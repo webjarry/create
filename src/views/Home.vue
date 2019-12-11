@@ -23,7 +23,8 @@
         </div>
 
         <div class="menu">
-          <div class="item" v-for="(item, index) in menu" :key="index" :class="index == 0 ? 'active' : ''">
+<!--          <div class="item" v-for="(item, index) in menu" :key="index" :class="index == 0 ? 'active' : ''">-->
+          <div class="item" v-for="(item, index) in menu" :key="index">
             <div class="icon">
               <img :src="item.icon" alt="" />
             </div>
@@ -47,39 +48,46 @@
                 </div>
               </div>
             </div>
-            <module v-for="(item, index) in 10" :key="index">
+
+            <module v-for="(item, index) in review" :key="index">
               <div class="user-info">
-                <div class="avatar shadow">
-                  <img :src="require('../assets/images/avatar.jpg')" alt="" />
+                <div class="avatar">
+                  <img :src="item.user.avatar" alt="" />
                 </div>
 
                 <div class="info">
                   <div class="title">
-                    <span>WEBJARRY</span>
+                    <span>{{item.user.name}}</span>
                     <div class="subtitle">
-                      <span class="time">22分钟前</span>
-                      <span class="device">发布自 iPhone X</span>
+                      <span class="time">{{item.time}}</span>
+                      <span class="device">发布自 {{item.device}}</span>
                     </div>
                   </div>
                 </div>
               </div>
               <div class="content">
-                <p>阖家安康老实交代拉克丝记得拉开始就达拉斯肯德基爱丽丝肯德基阿斯利康多久啊来看待静安寺来看待静安寺了肯德基阿拉丁卡阖家安康老实交代拉克丝记得拉开始就达拉斯肯德基爱丽丝肯德基阿斯利康多久啊来看待静安寺来看待静安寺了肯德基阿拉丁卡</p>
+                <p v-html="item.desc"></p>
+
+                <div class="thumb">
+                  <div class="thumb-item" v-for="(o, i) in item.thumb" :key="i">
+                    <img :src="o" alt="">
+                  </div>
+                </div>
               </div>
               <div class="footer">
                 <div class="item">
                   <div class="icon"><van-icon name="good-job-o" /></div>
-                  <div class="text">24</div>
+                  <div class="text">{{item.active.like}}</div>
                 </div>
 
-                <div class="item">
+                <div class="item" @click="$router.replace({name: 'Review', query: { id: index }})">
                   <div class="icon"><van-icon name="chat-o" /></div>
-                  <div class="text">31</div>
+                  <div class="text">{{item.active.comment}}</div>
                 </div>
 
                 <div class="item">
                   <div class="icon"><van-icon name="share" /></div>
-                  <div class="text">10</div>
+                  <div class="text">{{item.active.forward}}</div>
                 </div>
               </div>
             </module>
@@ -138,6 +146,127 @@ export default {
           title: '会员中心',
           icon: require('../assets/images/Home/userinfo.png'),
           subtitle: ''
+        }
+      ],
+      review: [
+        {
+          id: 0,
+          user: {
+            name: '小田田',
+            avatar: require('../assets/images/avatar.jpg')
+          },
+          time: '10 分钟前',
+          device: 'iPhone 8 Plus',
+          desc: '给我来一盒，免费就行，我什么都不怕',
+          active: {
+            like: 333,
+            comment: 12,
+            forward: 555
+          }
+        },
+        {
+          id: 0,
+          user: {
+            name: '小猫猫',
+            avatar: require('../assets/images/avatar1.jpg')
+          },
+          time: '30 分钟前',
+          device: 'iPhone 4s',
+          desc: '我他妈居然在皮皮虾看广告',
+          active: {
+            like: 333,
+            comment: 12,
+            forward: 555
+          }
+        },
+        {
+          id: 0,
+          user: {
+            name: '喂！我是狗，你说!',
+            avatar: require('../assets/images/avatar2.jpg')
+          },
+          thumb: [
+            require('../assets/images/avatar1.jpg'),
+            require('../assets/images/avatar1.jpg')
+          ],
+          time: '30 秒前',
+          device: 'iPhone 11 Pro',
+          desc: '这大爷可是老演员了……',
+          active: {
+            like: 333,
+            comment: 12,
+            forward: 555
+          }
+        },
+        {
+          id: 0,
+          user: {
+            name: '大慧慧',
+            avatar: require('../assets/images/avatar3.jpg')
+          },
+          thumb: [
+            require('../assets/images/avatar.jpg'),
+            require('../assets/images/avatar1.jpg'),
+            require('../assets/images/avatar2.jpg'),
+            require('../assets/images/avatar3.jpg'),
+          ],
+          time: '一个月前',
+          device: 'iPhone 8 Plus',
+          desc: '别的不说，我觉得，我的滑板鞋前奏，伴奏，确实好听',
+          active: {
+            like: 333,
+            comment: 12,
+            forward: 555
+          }
+        },
+        {
+          id: 0,
+          user: {
+            name: '大慧慧',
+            avatar: require('../assets/images/avatar3.jpg')
+          },
+          thumb: [
+            require('../assets/images/avatar1.jpg'),
+            require('../assets/images/avatar4.jpeg')
+          ],
+          time: '上周',
+          device: 'iPhone 8 Plus',
+          desc: '哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈',
+          active: {
+            like: 333,
+            comment: 12,
+            forward: 555
+          }
+        },
+        {
+          id: 0,
+          user: {
+            name: '小慧',
+            avatar: require('../assets/images/avatar1.jpg')
+          },
+          time: '刚刚',
+          device: 'iPhone 8 Plus',
+          desc: '牛逼666',
+          active: {
+            like: 333,
+            comment: 12,
+            forward: 555
+          }
+        },
+        {
+          id: 0,
+          user: {
+            name: '小慧',
+            avatar: require('../assets/images/avatar.jpg')
+          },
+          time: '刚刚',
+          device: 'iPhone 8 Plus',
+          desc: '上次看到挺喜欢的一个医生视频，说这个地方毛细血管特别多，很复杂怕什么感染之类的，后果还特别严重！自打那以后，刮胡子这块地方我都特别小心，有痘痘也不敢挤了。以前是随便喇，不可能给他它长痘的机会。',
+          active: {
+            like: 333,
+            comment: 12,
+            forward: 555
+          }
         }
       ]
     }

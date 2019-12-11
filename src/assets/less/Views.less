@@ -145,7 +145,18 @@
         background: @theme;
 
         &.zx {
-          background: #595857;
+          background: #212129;
+
+          .text-bg {
+            background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.1) 30%, #a9966e 100%);
+            background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0.1) 30%, #a9966e 100%);
+            background-image: -o-linear-gradient(left, rgba(255, 255, 255, 0.1) 30%, #a9966e 100%);
+            background-image: linear-gradient(left, rgba(255, 255, 255, 0.1) 30%, #a9966e 100%);
+          }
+
+          .desc {
+            color: #a9966e;
+          }
         }
 
         &.pt {
@@ -156,8 +167,6 @@
           background: #f6ad49;
         }
 
-
-
         .text-bg {
           position: absolute;
           top: 0.0rem;
@@ -166,13 +175,14 @@
           font-weight: bolder;
           font-size: 1.5rem;
           opacity: 0.4;
-          background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0.7) 100%);
-          background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0.7) 100%);
-          background-image: -o-linear-gradient(left, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0.7) 100%);
-          background-image: linear-gradient(left, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0.7) 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
+          background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0.8) 100%);
+          background-image: -moz-linear-gradient(left, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0.8) 100%);
+          background-image: -o-linear-gradient(left, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0.8) 100%);
+          background-image: linear-gradient(left, rgba(255, 255, 255, 0.1) 30%, rgba(255, 255, 255, 0.8) 100%);
         }
+
 
         .user-level {
           position: absolute;
@@ -239,8 +249,8 @@
           //background-image: url("../images/Home/ad.jpg");
           //background: #f1f1f1;
           //background-size: cover;
-          //background: linear-gradient(140deg, @auxiliary 30%, @theme 100%);
-          background:  @theme;
+          background: linear-gradient(140deg, #fa709a 30%, #fee140 100%);
+          //background: #404040;
           box-shadow:0px 0.08rem 0.24rem 0px rgba(90, 152, 229, 0.15);
 
           .title {
@@ -270,6 +280,8 @@
             width: 0.8rem;
             height: 0.8rem;
             border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
             overflow: hidden;
             img {
               width: 100%;
@@ -298,6 +310,27 @@
           padding-top: 0.25rem;
           line-height: 200%;
           color: #666666;
+
+          .thumb {
+            padding-top: 0.2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            .thumb-item {
+              width: 48%;
+              height: 2.5rem;
+              margin-bottom: 0.3rem;
+              border-radius: 0.3rem;
+              display: flex;
+              align-items: center;
+              overflow: hidden;
+
+              img {
+                width: 100%;
+              }
+            }
+          }
         }
         .footer {
           color: @text;
@@ -315,7 +348,8 @@
             .icon {
               display: flex;
               align-items: center;
-              padding-right: 0.1rem;
+              padding-right: 0.15rem;
+              font-size: 0.35rem;
             }
 
             .text {
@@ -325,6 +359,10 @@
         }
       }
     }
+  }
+
+  .details-views {
+
   }
 
   .sign-views, .exam-views {

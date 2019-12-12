@@ -1,6 +1,6 @@
 <template>
-  <views>
-    <div class="home-views">
+  <cls-views is-bar :tab-bar-item="menu">
+    <div class="home-views" v-x>
       <header class="home-header">
         <div class="user-card shadow" :class="user.level === 0 ? 'pt' : user.level === 1 ? 'gj' : 'zx'">
           <div class="text-bg">
@@ -23,7 +23,7 @@
         </div>
 
         <div class="menu">
-<!--          <div class="item" v-for="(item, index) in menu" :key="index" :class="index == 0 ? 'active' : ''">-->
+          <!--          <div class="item" v-for="(item, index) in menu" :key="index" :class="index == 0 ? 'active' : ''">-->
           <div class="item" v-for="(item, index) in menu" :key="index">
             <div class="icon">
               <img :src="item.icon" alt="" />
@@ -97,20 +97,17 @@
         </div>
       </main>
     </div>
-  </views>
+  </cls-views>
 </template>
 
 <script>
 // @ is an alias to /src
-// import Module from "../components/Module";
 
 import Module from "../components/Module";
-import Views from "../components/Views";
 
 export default {
   name: 'home',
   components: {
-    Views,
     Module
     // Module
   },
@@ -141,12 +138,12 @@ export default {
           icon: require('../assets/images/Home/notebook.png'),
           subtitle: ''
         },
-        {
-          id: 0,
-          title: '会员中心',
-          icon: require('../assets/images/Home/userinfo.png'),
-          subtitle: ''
-        }
+        // {
+        //   id: 0,
+        //   title: '会员中心',
+        //   icon: require('../assets/images/Home/userinfo.png'),
+        //   subtitle: ''
+        // }
       ],
       review: [
         {

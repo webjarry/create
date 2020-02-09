@@ -1,103 +1,65 @@
 <template>
-  <cls-views is-bar :tab-bar-item="menu">
-    <div class="home-views" v-x>
-      <header class="home-header">
-        <div class="user-card shadow" :class="user.level === 0 ? 'pt' : user.level === 1 ? 'gj' : 'zx'">
-          <div class="text-bg">
-            <span>{{levelBg}}</span>
+  <div class="home-views">
+    <header class="home-header">
+      <div class="user-card shadow" :class="user.level === 0 ? 'pt' : user.level === 1 ? 'gj' : 'zx'">
+        <div class="text-bg">
+          <span>{{levelBg}}</span>
+        </div>
+
+        <div class="user-level">
+          <div class="title">
+            <h2>{{user.name}}</h2>
+
+            <div class="subtitle">
+              <span>有效期至：{{user.over}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="desc">
+          <i>会员权益</i>
+        </div>
+      </div>
+      <div class="menu">
+        <div class="item" v-for="(item, index) in menu" :key="index">
+          <div class="icon">
+            <img :src="item.icon" alt="" />
           </div>
 
-          <div class="user-level">
+          <div class="text">
+            <span>{{item.title}}</span>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="home-main">
+      <div class="tab-box">
+        <div class="tab-index">
+          <div class="ke1-ad shadow" @click="$router.replace('/form')">
             <div class="title">
-              <h2>{{user.name}}</h2>
-
+              <div class="text">
+                <h2>实力派  更信赖</h2>
+              </div>
               <div class="subtitle">
-                <span>有效期至：{{user.over}}</span>
+                <span>一对一练车 35 天拿证</span>
               </div>
             </div>
           </div>
 
-          <div class="desc">
-            <i>会员权益</i>
-          </div>
+          <module v-for="(item, index) in review" :key="index"
+                  :desc="item.desc"
+                  :avatar="item.user.avatar" :name="item.user.name"
+                  :device="item.device" :time="item.time"
+                  :thumbs="item.thumb" :bar="{ like: item.active.like, comment: item.active.comment, forward: item.active.forward }"
+                  @clickComment="onComment(item.id)" @clickLike="onLike(item.id)" @clickForward="onForward(item.id)">
+
+          </module>
         </div>
-
-        <div class="menu">
-          <!--          <div class="item" v-for="(item, index) in menu" :key="index" :class="index == 0 ? 'active' : ''">-->
-          <div class="item" v-for="(item, index) in menu" :key="index">
-            <div class="icon">
-              <img :src="item.icon" alt="" />
-            </div>
-
-            <div class="text">
-              <span>{{item.title}}</span>
-            </div>
-          </div>
-        </div>
-      </header>
-      <main class="home-main">
-        <div class="tab-box">
-          <div class="tab-index">
-            <div class="ke1-ad shadow" @click="$router.replace('/form')">
-              <div class="title">
-                <div class="text">
-                  <h2>实力派  更信赖</h2>
-                </div>
-                <div class="subtitle">
-                  <span>一对一练车 35 天拿证</span>
-                </div>
-              </div>
-            </div>
-
-            <module v-for="(item, index) in review" :key="index">
-              <div class="user-info">
-                <div class="avatar">
-                  <img :src="item.user.avatar" alt="" />
-                </div>
-
-                <div class="info">
-                  <div class="title">
-                    <span>{{item.user.name}}</span>
-                    <div class="subtitle">
-                      <span class="time">{{item.time}}</span>
-                      <span class="device">发布自 {{item.device}}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="content">
-                <p v-html="item.desc"></p>
-
-                <div class="thumb">
-                  <div class="thumb-item" v-for="(o, i) in item.thumb" :key="i">
-                    <img :src="o" alt="">
-                  </div>
-                </div>
-              </div>
-              <div class="footer">
-                <div class="item">
-                  <div class="icon"><van-icon name="good-job-o" /></div>
-                  <div class="text">{{item.active.like}}</div>
-                </div>
-
-                <div class="item" @click="$router.replace({name: 'Review', query: { id: index }})">
-                  <div class="icon"><van-icon name="chat-o" /></div>
-                  <div class="text">{{item.active.comment}}</div>
-                </div>
-
-                <div class="item">
-                  <div class="icon"><van-icon name="share" /></div>
-                  <div class="text">{{item.active.forward}}</div>
-                </div>
-              </div>
-            </module>
-          </div>
-          <div class="tab-index"></div>
-          <div class="tab-index"></div>
-        </div>
-      </main>
-    </div>
-  </cls-views>
+        <div class="tab-index"></div>
+        <div class="tab-index"></div>
+      </div>
+    </main>
+  </div>
 </template>
 
 <script>
@@ -119,32 +81,6 @@ export default {
         over: '2020-11-20'
       },
       value: '',
-      menu: [
-        {
-          id: 0,
-          title: '预约学车',
-          icon: require('../assets/images/Home/reservation.png'),
-          subtitle: ''
-        },
-        {
-          id: 0,
-          title: '休闲中心',
-          icon: require('../assets/images/Home/talk.png'),
-          subtitle: ''
-        },
-        {
-          id: 0,
-          title: '考题复习',
-          icon: require('../assets/images/Home/notebook.png'),
-          subtitle: ''
-        },
-        // {
-        //   id: 0,
-        //   title: '会员中心',
-        //   icon: require('../assets/images/Home/userinfo.png'),
-        //   subtitle: ''
-        // }
-      ],
       review: [
         {
           id: 0,
@@ -265,6 +201,35 @@ export default {
             forward: 555
           }
         }
+      ],
+      menu: [
+        {
+          id: 0,
+          title: '预约学车',
+          path: '/',
+          icon: require('../assets/images/Home/reservation.png'),
+          subtitle: ''
+        },
+        {
+          id: 0,
+          title: '休闲中心',
+          path: '/form',
+          icon: require('../assets/images/Home/talk.png'),
+          subtitle: ''
+        },
+        {
+          id: 0,
+          title: '考题复习',
+          path: '/review',
+          icon: require('../assets/images/Home/notebook.png'),
+          subtitle: ''
+        },
+        // {
+        //   id: 0,
+        //   title: '会员中心',
+        //   icon: require('../assets/images/Home/userinfo.png'),
+        //   subtitle: ''
+        // }
       ]
     }
   },
@@ -291,6 +256,24 @@ export default {
     }
   },
   methods: {
+      /**
+       * 组件封装用户点赞
+       * */
+      onLike: function (id) {
+          window.console.log('on like', id)
+      },
+      /**
+       * 组件封装用户评论
+       * */
+      onComment: function (id) {
+          window.console.log('on comment', id)
+      },
+      /**
+       * 组件封装用户转发
+       * */
+      onForward: function (id) {
+          window.console.log('on forward', id)
+      }
   },
   mounted () {
   }

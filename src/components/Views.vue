@@ -1,9 +1,10 @@
 <template>
     <div class="views">
-        <div class="views-main" :style="{ marginBottom: isiPhoneX && isBar ? '1.98rem' : isBar ? '1.5rem' : '0' }">
+<!--        <div class="views-main" :style="{ marginBottom: isiPhoneX && isBar ? '1.98rem' : isBar ? '1.5rem' : '0' }">-->
+        <div class="views-main" v-x>
             <slot></slot>
         </div>
-        <nav class="bar" :style="{ paddingBottom: isiPhoneX ? '0.68rem' : '0.2rem' }" v-if="isBar">
+        <nav class="bar" v-x>
             <div class="item" v-for="(item, index) in bar" :key="index">
                 <div class="icon">
                     <img :src="item.icon" alt="" />
@@ -15,7 +16,7 @@
 </template>
 
 <script>
-import {isIPhoneX} from "../plugin/plugin";
+// import {isIPhoneX} from "../plugin/plugin";
 
 export default {
     name: "Views",
@@ -27,7 +28,7 @@ export default {
     },
     data () {
         return {
-            isiPhoneX: isIPhoneX(),
+            // isiPhoneX: isIPhoneX(),
             bar: [
                 {
                     id: 0,

@@ -14,7 +14,7 @@
 </template>
 
 <script>
-    import { post } from '../../plugin/axios'
+    import { post } from '../../service/axios'
 
     export default {
     name: "Sign",

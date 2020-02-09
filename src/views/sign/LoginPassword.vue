@@ -34,6 +34,9 @@
 </template>
 
 <script>
+import { Toast } from 'vant'
+import storage from "../../../lib/storage";
+
 export default {
     name: "Password",
     data () {
@@ -44,9 +47,23 @@ export default {
     },
     methods: {
         onSubmit: function () {
+            storage.set('accountToken', 'zheshiyigetoken');
+            let loginStatus = Toast.loading({
+                duration: 0,
+                message: '正在登录...',
+                loadingType: 'spinner'
+            }), _this = this;
+
+            setTimeout(function () {
+                loginStatus.clear()
+                _this.$router.push('/')
+            }, 1000)
         },
         onInput(key) {
             this.code = (this.code + key).slice(0, 4);
+            if (this.code.length >= 4) {
+                this.onSubmit()
+            }
         },
         onDelete() {
             this.code = this.code.slice(0, this.code.length - 1);

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios/index';
 
 axios.defaults.timeout = 5000;
 // axios.defaults.baseURL ='http://v.juhe.cn'; //填写域名
